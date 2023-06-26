@@ -3,7 +3,9 @@
 # powered by Disruptive Digital (c) 2020-2021 | join our tech telegram group here https://t.me/disruptivedigital_vtc
 # Big thanks to Jose from The Palm Tree Network for the wonderful installation guide: https://bagpipe-plantain-lgtp.squarespace.com/zabbix-elrond-guide
 # Big thanks also to Mihai Eremia from Trust Staking, Dr. Delphi from Staking Agency, Vasile Radu from Arc Stake, for all the help they provided
-# v.1.0
+# v.2.0
+
+echo -e "Starting the Zabbix Server script installer"
 
 # FIREWALL RULES
 printf "\nPlease specify your Zabbix server IP or host: "
@@ -19,12 +21,46 @@ fi
 
 
 # INSTALLING ZABBIX REPOSITORIES
-sudo wget https://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.0-1+focal_all.deb
-sudo dpkg -i zabbix-release_5.0-1+focal_all.deb
-sudo apt update
+# Query which Zabbix agent version to install
+while true; do
+echo "Choose your Zabbix/Ubuntu agent version:"
+echo "1. Ubuntu 20.04 (Focal) - Zabbix 5.0 LTS agent"
+echo "2. Ubuntu 20.04 (Focal) - Zabbix 6.0 LTS agent"
+echo "3. Ubuntu 22.04 (Jammy) - Zabbix 5.0 LTS agent"
+echo "4. Ubuntu 22.04 (Jammy) - Zabbix 6.0 LTS agent"
+
+read -p "Enter your choice (1-4): " choice
+
+case $choice in
+    1)
+        wget https://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.0-1+focal_all.deb
+        sudo dpkg -i zabbix-release_5.0-1+focal_all.deb
+		break
+        ;;
+    2)
+        wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-4+ubuntu20.04_all.deb
+        sudo dpkg -i zabbix-release_6.0-4+ubuntu20.04_all.deb
+		break
+        ;;
+    3)
+        wget https://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.0-2+ubuntu22.04_all.deb
+        sudo dpkg -i zabbix-release_5.0-2+ubuntu22.04_all.deb
+		break
+        ;;
+    4)
+        wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-4+ubuntu22.04_all.deb
+        sudo dpkg -i zabbix-release_6.0-4+ubuntu22.04_all.deb
+		break
+        ;;
+    *)
+        echo "Invalid choice."
+        ;;
+esac
+done
 
 # INSTALLING ZABBIX AGENT & CONFIGURE
-sudo apt install zabbix-agent
+sudo apt update -y
+sudo apt install -y zabbix-agent
 hname=$(hostname -f)
 printf "\nSetting your Zabbix server IP and hostname: $hname \n"
 azsIP=("Server="$zsIP)
@@ -35,7 +71,7 @@ sudo sed -i "s|ServerActive=127.0.0.1|$sazIP|" /etc/zabbix/zabbix_agentd.conf
 sudo sed -i "s|Hostname=Zabbix server|$zhname|" /etc/zabbix/zabbix_agentd.conf
 
 # Zabbix Elrond Metrics
-sudo apt install perl
+sudo apt install -y perl
 cd ~ && sudo git clone https://github.com/arcsoft-ro/zabbix-elrond-plugin
 cd ~/zabbix-elrond-plugin && sudo ./install.pl
 sudo systemctl restart zabbix-agent # sudo systemctl status zabbix-agent

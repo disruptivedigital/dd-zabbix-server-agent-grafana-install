@@ -5,9 +5,11 @@
 # Big thanks also to Mihai Eremia from Trust Staking, Dr. Delphi from Staking Agency, Vasile Radu from Arc Stake, for all the help they provided
 # v.1.0
 
+echo -e "Starting the Zabbix Server script installer"
+
 # INSTALLING APACHE2
-sudo apt update
-sudo apt install apache2
+sudo apt update -y
+sudo apt install -y apache2
 sudo systemctl start apache2
 sudo systemctl enable apache2
 #sudo systemctl status apache2
@@ -38,9 +40,9 @@ sudo sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 16M/" /etc/php/8*/
 sudo systemctl restart apache2
 
 # INSTALLING ZABBIX REPOSITORIES
-# Query which Zabbix version to install
+# Query which Zabbix server version to install
 # Declare variable zver and assign value 0
-echo -e "Starting the Zabbix Server script installer"
+
 printf "\nChoose your Zabbix/Ubuntu version \n"
 zver=0
 # Print to stdout
@@ -59,10 +61,10 @@ printf "\nYou selected Ubuntu 20.04 (Focal) - Zabbix 5.0 LTS, MySQL database\n"
 echo "Installing Zabbix Server v5.0 LTS for Ubuntu 20.04 (Focal) - web server APACHE2"
 wget https://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.0-1+focal_all.deb
 sudo dpkg -i zabbix-release_5.0-1+focal_all.deb
-sudo apt update
+sudo apt update -y
 
 # INSTALLING PACKAGES
-sudo apt install zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-agent zabbix-sql-scripts zabbix-get mysql-server -y
+sudo apt install -y zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-agent zabbix-sql-scripts zabbix-get mysql-server
 
 # CONFIGURING DATABASE
 sudo systemctl start mysql
@@ -88,10 +90,10 @@ printf "\nUbuntu 22.04 (Jammy) - Zabbix 6.0 LTS, MySQL database\n"
 echo "Installing Zabbix Server v6.0 LTS for Ubuntu 22.04 (Jammy) - web server APACHE2"
 wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-4+ubuntu22.04_all.deb
 sudo dpkg -i zabbix-release_6.0-4+ubuntu22.04_all.deb
-sudo apt update
+sudo apt update -y
 
 # INSTALLING PACKAGES
-sudo apt install zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-agent zabbix-sql-scripts zabbix-get mysql-server -y
+sudo apt install -y zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-agent zabbix-sql-scripts zabbix-get mysql-server
 
 # CONFIGURING DATABASE
 sudo systemctl start mysql
