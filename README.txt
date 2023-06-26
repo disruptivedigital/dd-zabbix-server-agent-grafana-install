@@ -1,5 +1,5 @@
 Elrond real-time node performance and health monitoring with Zabbix & Grafana
-powered by Disruptive Digital (c) 2020-2021
+powered by Disruptive Digital (c) 2020-2023
 Big thanks to Jose from The Palm Tree Network for the wonderful installation guide: https://thepalmtree.network/en/zabbix-elrond-guide/
 Big thanks also to Vasile Radu from Arc Stake, Mihai Eremia from Trust Staking, Dr. Delphi from Staking Agency for all the help they provided
 
