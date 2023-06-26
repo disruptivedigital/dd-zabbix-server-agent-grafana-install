@@ -4,7 +4,7 @@ Big thanks to Jose from The Palm Tree Network for the wonderful installation gui
 Big thanks also to Vasile Radu from Arc Stake, Mihai Eremia from Trust Staking, Dr. Delphi from Staking Agency for all the help they provided
 
 
-These scripts install Zabbix server, Zabbix agent, Grafana server and automates all the necessary configurations to properly monitor your Elrond nodes.
+These scripts install Zabbix server, Zabbix agent, Grafana server and automates all the necessary configurations to properly monitor your MultiversX nodes.
 
 Make sure you have git installed, if not, run the following commands:
 sudo apt update
