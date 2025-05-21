@@ -24,8 +24,8 @@ fi
 # Query which Zabbix agent version to install
 while true; do
 echo "Choose your Zabbix/Ubuntu agent version:"
-echo "1. Ubuntu 20.04 (Focal) - Zabbix 5.0 LTS agent"
-echo "2. Ubuntu 20.04 (Focal) - Zabbix 6.0 LTS agent"
+echo "1. Ubuntu 24.04 (Noble) - Zabbix 7.0 LTS agent"
+echo "2. Ubuntu 24.04 (Noble) - Zabbix 6.0 LTS agent"
 echo "3. Ubuntu 22.04 (Jammy) - Zabbix 5.0 LTS agent"
 echo "4. Ubuntu 22.04 (Jammy) - Zabbix 6.0 LTS agent"
 
@@ -33,13 +33,13 @@ read -p "Enter your choice (1-4): " choice
 
 case $choice in
     1)
-        wget https://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.0-1+focal_all.deb
-        sudo dpkg -i zabbix-release_5.0-1+focal_all.deb
+        wget https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.0+ubuntu24.04_all.deb
+        sudo dpkg -i zabbix-release_latest_7.0+ubuntu24.04_all.deb
 		break
         ;;
     2)
-        wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-4+ubuntu20.04_all.deb
-        sudo dpkg -i zabbix-release_6.0-4+ubuntu20.04_all.deb
+        wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_6.0+ubuntu24.04_all.deb
+        sudo dpkg -i zabbix-release_latest_6.0+ubuntu24.04_all.deb
 		break
         ;;
     3)
